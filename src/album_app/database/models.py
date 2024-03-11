@@ -1,4 +1,6 @@
-from sqlalchemy import BLOB, Column, ForeignKey, Integer, String
+from datetime import date
+
+from sqlalchemy import BLOB, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import DeclarativeBase, relationship
 
 
@@ -21,6 +23,8 @@ class Photo(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
+    date_taken = Column(Date, default=date.today(), nullable=False)
+    location = Column(String, nullable=False)
     data = Column(BLOB, nullable=False)
     album_id = Column(Integer, ForeignKey("albums.id"))
 

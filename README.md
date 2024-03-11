@@ -60,6 +60,9 @@ poetry run streamlit run album_app/ui/ui.py
 
 - **Folium** is a great library to create interactive maps.
 - **Streamlit** is a great library to create web apps with Python.
+- For the world cities dataset, I used the `cities.csv` file from the [Simple Maps](https://simplemaps.com/data/world-cities) website.
+- In a form, we cannot use `on_change` parameter in `st.selectbox`'s country to update the cities list. To perform this, we simply do not use `st.form` (and use `st.container` instead).
+- After completing the form, to clear the form, I had to use `st.session_state` which is a new [feature](https://docs.streamlit.io/library/api-reference/session-state) in Streamlit to share variables between reruns.
 
 ### Possible improvements
 

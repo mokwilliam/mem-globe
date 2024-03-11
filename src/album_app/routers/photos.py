@@ -9,8 +9,22 @@ router = APIRouter(
 @router.get("/")
 async def read_photos():
     return [
-        {"photo_id": "1", "photo_name": "photo1"},
-        {"photo_id": "2", "photo_name": "photo2"},
+        {
+            "id": 1,
+            "name": "photo1",
+            "date_taken": "2022-01-01",
+            "location": "New York",
+            "data": "data1",
+            "album_id": 1,
+        },
+        {
+            "id": 2,
+            "name": "photo2",
+            "date_taken": "2022-01-02",
+            "location": "Los Angeles",
+            "data": "data2",
+            "album_id": 1,
+        },
     ]
 
 

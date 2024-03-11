@@ -1,3 +1,4 @@
+from datetime import date
 from typing import List, Optional
 
 from pydantic import BaseModel
@@ -5,6 +6,8 @@ from pydantic import BaseModel
 
 class PhotoBase(BaseModel):
     name: str
+    date_taken: date
+    location: str
     data: bytes
     album_id: int
 
