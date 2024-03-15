@@ -9,7 +9,7 @@ class PhotoBase(BaseModel):
     date_taken: date
     location: str
     data: bytes
-    album_id: int
+    # album_id: int
 
 
 class PhotoCreate(PhotoBase):
@@ -23,18 +23,18 @@ class Photo(PhotoBase):
         orm_mode = True
 
 
-class AlbumBase(BaseModel):
-    name: str
-    description: Optional[str] = None
-    photos: List[Photo] = []
+# class AlbumBase(BaseModel):
+#     name: str
+#     description: Optional[str] = None
+#     photos: List[Photo] = []
 
 
-class AlbumCreate(AlbumBase):
-    pass
+# class AlbumCreate(AlbumBase):
+#     pass
 
 
-class Album(AlbumBase):
-    id: int
+# class Album(AlbumBase):
+#     id: int
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
