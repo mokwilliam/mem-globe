@@ -35,7 +35,7 @@ pip install poetry
 # `poetry init --no-interaction` to initialize a pre-existing project
 poetry new src --name="album_app"
 cd src
-poetry add fastapi sqlalchemy psycopg2 pydantic=1.10.14 uvicorn streamlit folium pytest
+poetry add fastapi sqlalchemy psycopg2 pydantic=1.10.14 uvicorn streamlit=1.31.0 folium pytest streamlit-folium streamlit-authenticator
 pip install python-dotenv # to use .env file
 # `poetry shell` to access the environment in the terminal and `exit` to exit the environment
 ```
@@ -90,3 +90,8 @@ Once the `.pre-commit-config.yaml` completed, we need to set up the git hooks sc
 ```bash
 pre-commit install
 ```
+
+## Credits
+
+- [Streamlit Folium](https://github.com/randyzwitch/streamlit-folium): a component for rendering Folium maps
+- [Streamlit Authenticator](https://github.com/mkhorasani/Streamlit-Authenticator): a secure authentication module to validate user credentials

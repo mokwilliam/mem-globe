@@ -1,0 +1,14 @@
+credentials:
+  usernames:
+    bshelton:
+      email: bshelton@user.xyz
+      name: Brandon Shelton
+      password: abc # Will be hashed automatically
+    cwoods:
+      email: cwoods@user.xyz
+      name: Cassandra Woods
+      password: def # Will be hashed automatically
+cookie:
+  expiry_days: 1
+  key: auth_key # Must be string
+  name: auth_cookie

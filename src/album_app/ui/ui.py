@@ -7,6 +7,7 @@ import folium
 import pandas as pd
 import requests
 import streamlit as st
+from album_app.ui.auth.authenticate import get_authenticator
 from PIL import Image
 from streamlit_folium import st_folium
 
@@ -16,8 +17,12 @@ st.set_page_config(
     layout="wide",
 )
 
-# TODO: Add authentication method
-status_auth = True
+### LOGIN TEST ###
+# username: bshelton
+# password: abc
+#
+# username: cwoods
+# password: def
 
 
 def init_session_state():
@@ -40,7 +45,7 @@ def clear_form(name, date_taken, country, city, encoded_image):
         },
     )
     st.session_state["photos"].append(photo.json())
-    st.session_state["name"] = ""
+    st.session_state["photo_name"] = ""
     st.session_state["date_taken"] = date.today()
     st.session_state["current_country"] = "France"
     st.session_state["current_city"] = "Paris"
@@ -91,7 +96,7 @@ def form(locations: pd.DataFrame):
         with add_photo_container:
             col_name, col_date = st.columns(2)
             with col_name:
-                name = st.text_input("Photo Name", max_chars=50, key="name")
+                name = st.text_input("Photo Name", max_chars=50, key="photo_name")
             with col_date:
                 date_taken = st.date_input(
                     "Date Taken",
@@ -177,11 +182,20 @@ def init_map(locations: pd.DataFrame):
 
 
 def main():
-    if status_auth:
+    authenticator = get_authenticator()
+    name, _, _ = authenticator.login()
+    if st.session_state["authentication_status"] is False:
+        st.error("Username/password is incorrect")
+    elif st.session_state["authentication_status"] is None:
+        st.warning("Please enter your username and password")
+    else:
         init_session_state()
-
         st.title("MemGlobe 🌍")
-        st.write("Welcome to MemGlobe! Your photos all around the world! :sunglasses:")
+        st.subheader(
+            "Welcome to MemGlobe! Your photos all around the world! :sunglasses:"
+        )
+        st.caption(f"*Connected as {name}*")
+        authenticator.logout()
 
         # Retrieve data
         locations = pd.read_csv(
